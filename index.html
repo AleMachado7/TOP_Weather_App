@@ -14,14 +14,12 @@
             <h1>The Odin Weather</h1>
             <p>Get weather data from any city by just writing the city name below.</p>
         </header>
-        <section id="search-container">
-            <div>
-                <label for="search-text">City</label>
-                <input type="text" id="search-text" name="search-text" required>
-                <button>Search</button>
-            </div>
-
-        </section>
+        <div id="search-container">
+            <label for="search-input">City</label>
+            <input id="search-input" type="text" name="search-text">
+            <button id="search-button">Search</button>
+        </div>
+        <div id="result-container"></div>
     </main>
     <footer>
         <p>This project was created as part of The Odin Project curriculum.</p>
