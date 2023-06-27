@@ -1,3 +1,9 @@
+import countryIcon from "../assets/images/world-svgrepo-com.svg"
+import cityIcon from "../assets/images/city-svgrepo-com.svg"
+import timeIcon from "../assets/images/clock-svgrepo-com.svg"
+import temperatureIcon from "../assets/images/temperature-svgrepo-com.svg"
+import humidityIcon from "../assets/images/humidity-svgrepo-com.svg"
+
 class UserInterface {
   static renderResult(data) {
     const resultContainer = document.getElementById("result-container")
@@ -8,13 +14,17 @@ class UserInterface {
                 <p>${data.error.message}</p>
             `
     } else {
+      const [datePart, timePart] = data.location.localtime.split(" ")
+      const [year, month, day] = datePart.split("-")
+      const formattedDate = `${day}/${month}/${year} ${timePart}`
+
       resultContainer.innerHTML = `
         <ul class="weather-data">
-            <li>Country: ${data.location.country}</li>
-            <li>City: ${data.location.name}</li>
-            <li>Local Time: ${data.location.localtime}</li>
-            <li>Temperature (C): ${data.current.temp_c}</li>
-            <li>Humidity: ${data.current.humidity}</li>
+            <li><img src=${countryIcon} class="icon"><span>Country: ${data.location.country}</span></li>
+            <li><img src=${cityIcon} class="icon">City: ${data.location.name}</li>
+            <li><img src=${timeIcon} class="icon">Local Time: ${formattedDate}</li>
+            <li><img src=${temperatureIcon} class="icon">Temperature: ${data.current.temp_c}° C</li>
+            <li><img src=${humidityIcon} class="icon">Humidity: ${data.current.humidity}</li>
         </ul>
         `
     }

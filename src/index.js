@@ -1,5 +1,5 @@
 import "./style.css"
-import getCityWeatherAsync from "./globalFunctions/getCityWeather"
+import getCityWeatherAsync from "./globalFunctions/getCityWeatherAsync"
 import UserInterface from "./modules/UserInterface"
 
 const searchInput = document.getElementById("search-input")
