@@ -3,9 +3,24 @@ import cityIcon from "../assets/images/city-svgrepo-com.svg"
 import timeIcon from "../assets/images/clock-svgrepo-com.svg"
 import temperatureIcon from "../assets/images/temperature-svgrepo-com.svg"
 import humidityIcon from "../assets/images/humidity-svgrepo-com.svg"
+import getCityWeatherAsync from "../globalFunctions/getCityWeatherAsync"
 
 class UserInterface {
-  static renderResult(data) {
+  static setSearchButtonEvent() {
+    const searchInput = document.getElementById("search-input")
+    const searchButton = document.getElementById("search-button")
+
+    searchButton.addEventListener("click", async () => {
+      if (searchInput.value === "") return
+
+      searchButton.disabled = true
+      const weatherData = await getCityWeatherAsync(searchInput.value)
+      UserInterface.renderRequestResult(weatherData)
+      searchButton.disabled = false
+    })
+  }
+
+  static renderRequestResult(data) {
     const resultContainer = document.getElementById("result-container")
 
     if ("error" in data) {
